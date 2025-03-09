@@ -21,11 +21,11 @@ in
 
 stdenv.mkDerivation rec {
   pname = "iozone";
-  version = "3.506";
+  version = "3.507";
 
   src = fetchurl {
     url = "http://www.iozone.org/src/current/iozone${lib.replaceStrings [ "." ] [ "_" ] version}.tar";
-    hash = "sha256-EUzlwHGHO5ose6bnPQXV735mVkOSrL/NwLMmHbEPy+c=";
+    hash = "sha256-HoCHraBW9dgBjuC8dmhtQW/CJR7QMDgFXb0K940eXOM=";
   };
 
   license = fetchurl {
@@ -37,6 +37,7 @@ stdenv.mkDerivation rec {
   postBuild = "popd";
 
   buildFlags = target;
+  makeFlags = [ "CFLAGS=-DHAVE_ANSIC_C" ];
 
   enableParallelBuilding = true;
 
